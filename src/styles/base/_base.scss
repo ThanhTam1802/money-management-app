@@ -1,0 +1,11 @@
+body {
+  background-color: $dark-black;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+}
