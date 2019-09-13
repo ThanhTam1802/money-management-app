@@ -9,7 +9,7 @@ module.exports = {
   module: {
     rules: [{
       loader: 'babel-loader',
-      test: /\.jsx$/, // Regular Exp... chay babel moi khi thay file co duoi la .js
+      test: /\.(js|jsx)$/, // Regular Exp... chay babel moi khi thay file co duoi la .js
       exclude: /node_modules/ // tru cac file trong node_modules
     },{
       test: /\.s?css$/, // SCSS
