@@ -20,7 +20,7 @@ const addExpenses = (
   {
     name = '',
     amount = 0,
-    createAt = 0
+    createAt = undefined
   } = {}
 ) => ({
   type: 'ADD_EXPENSES',
@@ -125,11 +125,16 @@ const filterReducer = (state = filterReducerDefault, action) => {
 const getVisibleExpensive = (expenses, { text, sortBy, startDate, endDate }) => {
   return expenses.filter((expense) => {
     const startDateMatch = typeof startDate !== 'number' || expense.createAt > startDate;
-    console.log(startDateMatch);
     const endDateMatch = typeof endDate !== 'number' || expense.createAt < endDateMatch;
-    const textMacth = true;
+    const textMacth = expense.name.toLowerCase().includes(text.toLowerCase());
 
     return startDateMatch && endDateMatch && textMacth;
+  }).sort((a, b) => {
+    if (sortBy === 'date') {
+      return a.createAt < b.createAt ? 1 : -1;
+    } else if(sortBy === 'amount') {
+      return a.
+    }
   })
 };
 
@@ -149,20 +154,22 @@ store.subscribe(() => {
 
 const A = store.dispatch(addExpenses({ name: 'Breakfast', amount: 150, createAt: 100 }));
 const B = store.dispatch(addExpenses({ name: 'Lunch', amount: 150, createAt: 200 }));
-const C = store.dispatch(addExpenses({ name: 'Coffee', amount: 150, createAt: 300 }));
+const C = store.dispatch(addExpenses({ name: 'Coffee', amount: 150 }));
+const D = store.dispatch(addExpenses({ name: 'Coffee and dinner', amount: 150 }));
+//store.dispatch(addExpenses());
 
 // store.dispatch(removeExpenses({ id: Quyen.expenses.id }))
 // store.dispatch(removeExpenses({ id: Nang.expenses.id }))
 
 // store.dispatch(editExpenses(Nang.expenses.id, { amount: 200000 }))
 
-// store.dispatch(setTextFilter('rent'));
+//store.dispatch(setTextFilter('coffee'));
 // store.dispatch(setTextFilter());
 
 // store.dispatch(sortByAmount());
-// store.dispatch(sortByDate());
+store.dispatch(sortByDate());
 
-store.dispatch(setStartDate(100));
+//store.dispatch(setStartDate(100));
 // store.dispatch(setStartDate());
 
 // store.dispatch(setEndDate(200));
