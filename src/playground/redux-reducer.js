@@ -132,8 +132,8 @@ const getVisibleExpensive = (expenses, { text, sortBy, startDate, endDate }) => 
   }).sort((a, b) => {
     if (sortBy === 'date') {
       return a.createAt < b.createAt ? 1 : -1;
-    } else if(sortBy === 'amount') {
-      return a.
+    } else if (sortBy === 'amount'){
+      return a.amount < b.amount ? 1 : -1;
     }
   })
 };
@@ -152,10 +152,12 @@ store.subscribe(() => {
   console.log(visibleExpensive);
 });
 
-const A = store.dispatch(addExpenses({ name: 'Breakfast', amount: 150, createAt: 100 }));
-const B = store.dispatch(addExpenses({ name: 'Lunch', amount: 150, createAt: 200 }));
-const C = store.dispatch(addExpenses({ name: 'Coffee', amount: 150 }));
-const D = store.dispatch(addExpenses({ name: 'Coffee and dinner', amount: 150 }));
+// --- Action zone --- //
+
+const A = store.dispatch(addExpenses({ name: 'Breakfast', amount: 450, createAt: 100 }));
+const B = store.dispatch(addExpenses({ name: 'Lunch', amount: 120, createAt: 200 }));
+const C = store.dispatch(addExpenses({ name: 'Coffee', amount: 330, createAt: 230 }));
+const D = store.dispatch(addExpenses({ name: 'Coffee and dinner', amount: 345, createAt: 540  }));
 //store.dispatch(addExpenses());
 
 // store.dispatch(removeExpenses({ id: Quyen.expenses.id }))
@@ -166,22 +168,11 @@ const D = store.dispatch(addExpenses({ name: 'Coffee and dinner', amount: 150 })
 //store.dispatch(setTextFilter('coffee'));
 // store.dispatch(setTextFilter());
 
-// store.dispatch(sortByAmount());
-store.dispatch(sortByDate());
+store.dispatch(sortByAmount());
+//store.dispatch(sortByDate());
 
 //store.dispatch(setStartDate(100));
 // store.dispatch(setStartDate());
 
 // store.dispatch(setEndDate(200));
 // store.dispatch(setEndDate());
-
-// // TESTING
-// const student = {
-//   id: '16DH110238',
-//   name: 'Thanh Tam'
-// }
-// const element = {
-//   class: 'TH1604',
-//   major: 'Information technology'
-// }
-// console.log({ ...student, ...element })
