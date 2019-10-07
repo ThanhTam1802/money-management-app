@@ -1,20 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import uuid from 'uuid';
 
-const demoState = {
-  expenses: [{
-    id: 'jk47mit20',
-    name: 'Thanh Tam',
-    amount: 500000
-  }],
-  filter: {
-    text: 'rent',
-    sortBy: 'amount',
-    startDate: undefined,
-    endDate: undefined
-  }
-};
-
 // ADD_EXPENSES
 const addExpenses = (
   {
@@ -72,6 +58,7 @@ const setEndDate = (date = undefined) => ({
 
 // EXPENSES REDUCER
 const expensesReducerDefault = [];
+
 const expensesReducer = (state = expensesReducerDefault, action) => {
   switch (action.type) {
     case 'ADD_EXPENSES':
@@ -121,6 +108,7 @@ const filterReducer = (state = filterReducerDefault, action) => {
       return state
   };
 };
+
 // GET VISIBLE EXPENSIVE
 const getVisibleExpensive = (expenses, { text, sortBy, startDate, endDate }) => {
   return expenses.filter((expense) => {
