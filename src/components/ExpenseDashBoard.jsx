@@ -1,8 +1,10 @@
 import React from 'react';
+import ExpnseList from './ExpenseList.jsx';
+
 const ExpenseDashBoardPage = () => {
   return (
     <div>
-      <p>THIS IS EXPENSE PAGE</p>
+      <ExpnseList />
     </div>
   );
 };
